@@ -1,6 +1,6 @@
-import NoticiaPreview from '../components/Noticia';
-import noticiasData from '../data/noticiasReal.json';
-import ArticuloAcademico from '../components/ArticuloAcademico.jsx'
+import NoticiaPreview from '../../components/Noticia';
+import noticiasData from '../../data/noticiasReal.json';
+import ArticuloAcademico from '../../components/ArticuloAcademico.jsx'
 // Tipos
 type Noticia = {
   id: string | number;

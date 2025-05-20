@@ -1,5 +1,7 @@
 'use client'
 
+import Link from "next/link";
+
 const Header = () => {
 
   return (
@@ -16,6 +18,7 @@ const Header = () => {
         </div>
 
         {/* Título central */}
+        <Link href={'/'}>
         <div className="flex gap-2 justify-end items-end">
           <div className="flex flex-col -space-y-3 leading-none">
             <span className="font-semibold text-md">DIARIO</span>
@@ -35,6 +38,7 @@ const Header = () => {
             <p className="text-3xl text-blue-300 font-bold ">AÑOS</p>
           </div>
         </div>
+        </Link>
 
 
         {/* Div vacío para mantener equilibrio visual */}
