@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Rokkitt } from "next/font/google";
-import "./globals.css";
-import Header from '../components/Header.jsx'
-import Footer from '../components/Footer.jsx'
-import AsideRight from '../components/AsideRight.jsx'
-import AsideLeft from '../components/AsideLeft.jsx'
-import Visitante from '../components/Visitante.jsx'
+import "../globals.css";
+import Header from '../../components/Header.jsx'
+import Footer from '../../components/Footer.jsx'
+import AsideRight from '../../components/AsideRight.jsx'
+import AsideLeft from '../../components/AsideLeft.jsx'
+import Visitante from '../../components/Visitante.jsx'
 import Image from "next/image";
 
 const rookit = Rokkitt({
