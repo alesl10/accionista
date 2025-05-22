@@ -1,8 +1,13 @@
 import "../globals.css";
+import { Rokkitt } from "next/font/google";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import NavBarAdmin from '../../components/Admin/NavBarAdmin'
 
+const rookit = Rokkitt({
+    variable: '--font-rokkit',
+    subsets: ['latin']
+  })
 
 export const metadata = {
   title: "Inicio | El Accionista",
@@ -26,23 +31,32 @@ export const metadata = {
   },
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
+    <html>
+      <body
+        className={`${rookit.variable} antialiased transition `}
+      >
+
         <div className="flex flex-col min-h-screen">
           <Header />
 
           <div className="grow flex gap-2 bg-gray-100  ">
             <NavBarAdmin />
             <div className="p-2 grow">
-            {children}
+              {children}
             </div>
           </div>
 
           <Footer />
         </div>
+      </body>
+    </html>
   );
 }
