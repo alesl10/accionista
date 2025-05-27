@@ -3,7 +3,7 @@ import { GoLaw } from "react-icons/go";
 const CardLey = ({numeroLey, descripcion}) => {
   return (
   <div
-  className="flex  gap-2  text-blue-950 p-2 rounded-xl m-auto shadow-lg shadow-gray-600 items-center font-semibold relative  border-t-[12px] border-blue-950 w-full hover:border-gray-500 cursor-pointer"
+  className="flex  gap-2  text-blue-950 p-2 rounded-xl m-auto shadow-lg shadow-gray-600 items-center font-semibold relative  border-t-[12px] border-secondary w-full hover:border-gray-500 cursor-pointer"
 
   // style={{background:'linear-gradient(to bottom right, #213867 50%, #83c1f7 100%)' }}
   >

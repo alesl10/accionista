@@ -26,7 +26,7 @@ export default function Home() {
       <div className="w-full max-w-4xl flex flex-col gap-5">
         {subsecciones.map((s) => (
           <div key={s.subseccion_nombre}>
-            <h4 className="bg-[#213867] text-white p-2 text-xl rounded-md font-medium text-start shadow-md shadow-gray-600">
+            <h4 className="bg-secondary text-white p-2 text-xl rounded-md font-medium text-start shadow-md shadow-gray-600">
               {s.subseccion_nombre.toUpperCase()}
             </h4>
 

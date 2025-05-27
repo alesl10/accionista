@@ -3,13 +3,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #213867;
+  --primary: #213867 ;
+  --secondary:#1F62A1;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-rokkit: var(--font-rokkit)
@@ -30,10 +32,10 @@ body {
 
 .bgHeader {
 	background: repeating-linear-gradient(
-		135deg,
-		#213867,
-		#213867 45px,
-		#1d2e5b 45px,
-		#1d2e5b 85px
+		45deg,
+		var(--color-primary) ,
+		var(--color-primary)  10px,
+		#1F62A1  20px,
+		#1F62A1  0px
 	  );
 }

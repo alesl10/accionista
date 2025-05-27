@@ -10,10 +10,10 @@ const rookit = Rokkitt({
 })
 
 
-export const metadata : Metadata = {
+export const metadata: Metadata = {
   title: "Inicio | El Accionista",
   description: "Diario El Accionista",
-  keywords: ["el accionista", "accionista", "diario","publicaciones", "edicto", "boletin oficial", "igj"],
+  keywords: ["el accionista", "accionista", "diario", "publicaciones", "edicto", "boletin oficial", "igj"],
   authors: [{ name: "El accionista" }],
   openGraph: {
     title: "Inicio | El Accionista",
@@ -40,10 +40,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${rookit.variable} antialiased `}
+        className={`${rookit.variable} antialiased flex flex-col min-h-screen`}
       >
         <Header />
-            {children}
+        {children}
         <Footer />
       </body>
     </html>

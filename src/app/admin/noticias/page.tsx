@@ -35,7 +35,6 @@ export default function NoticiaForm() {
     return (
         <div className=" mx-auto w-full container  p-8  ">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Crear Nueva Noticia</h2>
-
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <div className="flex gap-4 w-full">
 

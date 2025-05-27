@@ -1,7 +1,7 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1d2e5b] text-white text-sm mt-auto">
+    <footer className="bg-primary text-white text-sm mt-auto">
       <div className="max-w-7xl mx-auto px-4 py-6 grid md:grid-cols-3 gap-6">
         <div>
           <h4 className="font-semibold text-lg">El Accionista</h4>

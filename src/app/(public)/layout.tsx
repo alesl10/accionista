@@ -1,5 +1,6 @@
 import AsideRight from '../../components/AsideRight.jsx'
 import AsideLeft from '../../components/AsideLeft.jsx'
+import Visitante from '../../components/Visitante.jsx'
 import Image from "next/image";
 
 
@@ -28,7 +29,7 @@ export default function indexLayout({
       <div className="w-[250px] shrink-0">
         <AsideRight />
       </div>
-
+      <Visitante />
     </div>
   );
 }
