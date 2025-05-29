@@ -1,6 +1,8 @@
 import NoticiaPreview from '../../components/Noticia';
 import noticiasData from '../../data/noticiasReal.json';
 import ArticuloAcademico from '../../components/ArticuloAcademico.jsx'
+import { getSeccion } from '@/services/seccion';
+
 // Tipos
 type Noticia = {
   id: string | number;
@@ -17,8 +19,10 @@ type Subseccion = {
 // Limpieza de HTML
 const cleanHTML = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, '');
 
-export default function Home() {
+export default async function Home() {
   const subsecciones: Subseccion[] = noticiasData;
+  const secciones = await getSeccion()
+  console.log(secciones)
 
 
   return (
