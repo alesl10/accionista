@@ -1,29 +1,22 @@
 import NoticiaPreview from '../../components/Noticia';
-import noticiasData from '../../data/noticiasReal.json';
 import ArticuloAcademico from '../../components/ArticuloAcademico.jsx'
-import { getSeccion } from '@/services/seccion';
+import type { RawNoticia} from '../../types/index'
+import { agruparPorSubseccion, cleanHTML} from '../../utils/index'
 
-// Tipos
-type Noticia = {
-  id: string | number;
-  fecha: string;
-  textoBreve: string;
-  textoLargo: string;
-};
 
-type Subseccion = {
-  subseccion_nombre: string;
-  noticias: Noticia[];
-};
 
-// Limpieza de HTML
-const cleanHTML = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, '');
 
 export default async function Home() {
-  const subsecciones: Subseccion[] = noticiasData;
-  const secciones = await getSeccion()
-  console.log(secciones)
+  const res = await fetch(`http://localhost:5079/api/publicacion/publicaciones/2025-01-21`, {
+    cache: 'no-store',
+  });
 
+  if (!res.ok) {
+    throw new Error('Error al obtener las secciones');
+  }
+
+  const noticias: RawNoticia[] = await res.json();
+  const subsecciones = agruparPorSubseccion(noticias);
 
   return (
     <div className="w-full flex justify-center">
@@ -39,7 +32,7 @@ export default async function Home() {
                 <NoticiaPreview
                   id={n.id}
                   fecha={n.fecha}
-                  titulo={cleanHTML(n.textoBreve)}
+                  titulo={n.textoBreve}
                   cuerpo={n.textoLargo}
                   resolucion="Resolución General 5685/2025"
                 />
@@ -49,15 +42,14 @@ export default async function Home() {
           </div>
         ))}
 
-        <h4 className='text-center font-semibold text-2xl text-primary px-4 py-2 bg-blue-300/50 border border-primary m-auto shadow-md shadow-gray-600 rounded-lg'>Articulos Académicos</h4>
-        <div className='flex flex-wrap gap-5  justify-center mb-4 '>
+        <h4 className='text-center font-semibold text-2xl text-primary px-4 py-2 bg-blue-300/50 border border-primary m-auto shadow-md shadow-gray-600 rounded-lg'>Artículos Académicos</h4>
+        <div className='flex flex-wrap gap-5 justify-center mb-4 '>
           <ArticuloAcademico link={'localhost'} titulo={'Apuntes sobre la firma en la mediación'} autor={'Dra. Viviana V. Gómez'} />
           <ArticuloAcademico link={'localhost'} titulo={'Apuntes sobre la firma en la mediación'} autor={'Dra. Viviana V. Gómez'} />
           <ArticuloAcademico link={'localhost'} titulo={'Apuntes sobre la firma en la mediación'} autor={'Dra. Viviana V. Gómez'} />
           <ArticuloAcademico link={'localhost'} titulo={'Apuntes sobre la firma en la mediación'} autor={'Dra. Viviana V. Gómez'} />
         </div>
       </div>
-
     </div>
   );
 }

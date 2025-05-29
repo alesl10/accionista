@@ -15,6 +15,7 @@ export default function indexLayout({
       <div className=" hidden lg:flex w-[200px] pt-5 shrink-0  flex-col gap-10">
         <AsideLeft />
         <div className="flex flex-col items-start gap-2  ">
+
           <h6 className="text-center text-primary font-medium text-lg w-full">Socios Amigos</h6>
           <Image src={'/REGALERIA_EMPRESARIAL.jpg'} alt="Imagen publicitaria" width={200} height={100} className="saturate-50 rounded-2xl" />
         </div>
