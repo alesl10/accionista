@@ -1,13 +1,15 @@
 import NoticiaPreview from '../../components/Noticia';
-import ArticuloAcademico from '../../components/ArticuloAcademico.jsx'
-import type { RawNoticia} from '../../types/index'
-import { agruparPorSubseccion, cleanHTML} from '../../utils/index'
+import ArticuloAcademico from '../../components/ArticuloAcademico.jsx';
+import { agruparPorSubseccion } from '../../utils/index';
+import type { RawNoticia } from '../../types/index';
 
 
-
-
-export default async function Home() {
-  const res = await fetch(`http://localhost:5079/api/publicacion/publicaciones/2025-01-21`, {
+export default async function Home({ searchParams }: { searchParams: { fecha?: string } }) {
+  const resolvedSearchParams = await searchParams;
+  const fecha = resolvedSearchParams.fecha || new Date().toISOString().split('T')[0];
+  
+  // console.log(fecha)
+  const res = await fetch(`http://localhost:5079/api/publicacion/publicaciones/${fecha}`, {
     cache: 'no-store',
   });
 
@@ -42,12 +44,18 @@ export default async function Home() {
           </div>
         ))}
 
-        <h4 className='text-center font-semibold text-2xl text-primary px-4 py-2 bg-blue-300/50 border border-primary m-auto shadow-md shadow-gray-600 rounded-lg'>Artículos Académicos</h4>
-        <div className='flex flex-wrap gap-5 justify-center mb-4 '>
-          <ArticuloAcademico link={'localhost'} titulo={'Apuntes sobre la firma en la mediación'} autor={'Dra. Viviana V. Gómez'} />
-          <ArticuloAcademico link={'localhost'} titulo={'Apuntes sobre la firma en la mediación'} autor={'Dra. Viviana V. Gómez'} />
-          <ArticuloAcademico link={'localhost'} titulo={'Apuntes sobre la firma en la mediación'} autor={'Dra. Viviana V. Gómez'} />
-          <ArticuloAcademico link={'localhost'} titulo={'Apuntes sobre la firma en la mediación'} autor={'Dra. Viviana V. Gómez'} />
+        <h4 className="text-center font-semibold text-2xl text-primary px-4 py-2 bg-blue-300/50 border border-primary m-auto shadow-md shadow-gray-600 rounded-lg">
+          Artículos Académicos
+        </h4>
+        <div className="flex flex-wrap gap-5 justify-center mb-4 ">
+          {[...Array(4)].map((_, i) => (
+            <ArticuloAcademico
+              key={i}
+              link={'localhost'}
+              titulo={'Apuntes sobre la firma en la mediación'}
+              autor={'Dra. Viviana V. Gómez'}
+            />
+          ))}
         </div>
       </div>
     </div>

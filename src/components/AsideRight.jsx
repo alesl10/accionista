@@ -1,4 +1,4 @@
-import MyCalendar from "./Calendar.jsx";
+import MyCalendar from "./Calendar";
 import CardLey from "./CardLey.jsx";
 import { MdOutlineCloudDownload } from "react-icons/md";
 
