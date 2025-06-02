@@ -33,15 +33,20 @@ export default function BasicDateCalendar() {
   }, []);
 
   const handleFechaChange = (newValue: Dayjs | null) => {
-    if (
-      newValue &&
-      newValue.isValid() &&
-      currentView === 'day' &&
-      (!selectedDate || !newValue.isSame(selectedDate, 'day'))
-    ) {
-      setSelectedDate(newValue);
+    if (!newValue || !newValue.isValid()) return;
+  
+    // Solo redireccionamos si el usuario seleccionó un día
+    if (currentView === 'day') {
       const nuevaFecha = newValue.format('YYYY-MM-DD');
-      router.push(`/?fecha=${nuevaFecha}`);
+      const fechaActual = selectedDate?.format('YYYY-MM-DD');
+  
+      if (nuevaFecha !== fechaActual) {
+        setSelectedDate(newValue);
+        router.push(`/?fecha=${nuevaFecha}`);
+      }
+    } else {
+      // Actualiza la fecha seleccionada solo si no estamos en la vista de 'day'
+      setSelectedDate(newValue);
     }
   };
 

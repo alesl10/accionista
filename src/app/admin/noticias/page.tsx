@@ -1,5 +1,8 @@
 'use client'
 
+import { getSeccion } from "@/services/seccion";
+import { Seccion } from "@/types/seccion";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -10,27 +13,25 @@ type Inputs = {
     diasPublicados: number
 };
 
-const secciones = [
-    "Publicaciones",
-    "Jurisprudencia",
-    "Legislacion",
-    "AFIP",
-    "ANSES",
-    "INAES",
-    "IGJ",
-    "C.N.V.",
-    "Espacios Academicos",
-    "Servicios"
-];
-const subsecciones = [
-    "AGENCIA DE RECAUDACIÓN Y CONTROL ADUANERO",
-    "COMISIÓN NACIONAL DE VALORES",
-    "CONVOCATORIA A ASAMBLEA",
-];
 
 export default function NoticiaForm() {
+    const [secciones, setSecciones] = useState<Seccion[]>([])
+    const [subSecciones, setSubSecciones] = useState([])
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+
+    useEffect(() => {
+        
+        const fetchSecciones = async () => {
+            try {
+                const data = await getSeccion();
+                setSecciones(data);
+            } catch (error) {
+                console.error("Error al obtener las secciones", error);
+            }
+        };
+        fetchSecciones()
+    }, [])
 
     return (
         <div className=" mx-auto w-full container  p-8  ">
@@ -49,8 +50,8 @@ export default function NoticiaForm() {
                             defaultValue=""
                         >
                             <option value="" disabled>Seleccione una sección...</option>
-                            {secciones.map((seccion, index) => (
-                                <option key={index} value={index + 1}>{seccion}</option>
+                            {secciones.map((seccion) => (
+                                <option key={seccion.id} value={seccion.id}>{seccion.nombre}</option>
                             ))}
                         </select>
                     </div>
@@ -66,7 +67,7 @@ export default function NoticiaForm() {
                             defaultValue=""
                         >
                             <option value="" disabled>Seleccione una subsección...</option>
-                            {subsecciones.map((subseccion, index) => (
+                            {subSecciones.map((subseccion, index) => (
                                 <option key={index} value={index + 1}>{subseccion}</option>
                             ))}
                         </select>
