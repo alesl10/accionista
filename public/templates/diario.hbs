@@ -1,0 +1,203 @@
+{{!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    @page {
+      size: 216mm 356mm;
+      margin: 20mm;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+        height: 100%;
+      font-family: 'sans-serif', serif;
+      font-size: 11pt;
+      color: #000;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      color: rgb(7, 7, 78);
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .marca {
+      line-height: 1.2;
+    }
+    .titulo{
+        color: white;
+        background-color: black;
+        padding: 10px;
+        border-radius: 20px;
+        border-color: gray;
+        margin-bottom: 2px;
+    }
+
+    .marca h1 {
+      font-size: 40pt;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .marca span {
+      font-size: 10pt;
+      font-weight: bold;
+      display: block;
+    }
+
+    .anios {
+      text-align: center;
+      color: #D4AF37;
+      line-height: 1;
+    }
+
+    .anios .grande {
+      font-size: 36pt;
+      font-weight: bold;
+    }
+
+    .anios .chico {
+      font-size: 14pt;
+      font-weight: bold;
+    }
+
+    .datos-dia {
+      text-align: center;
+      font-size: 10pt;
+      font-weight: bold;
+      margin-bottom: 15px;
+      border-bottom: 2px;
+      border-color: black;
+    }
+
+   
+
+    .principal h2 {
+      font-size: 14pt;
+      font-weight: bold;
+      text-align: center;
+      margin: 0 0 5px;
+    }
+
+    .principal p {
+      text-align: justify;
+      margin: 5px 0;
+    }
+
+    .columnas {
+        height: 80%;
+      column-count: 3;
+      column-gap: 20px;
+    }
+
+    .seccion {
+      
+      margin-bottom: 10px;
+    }
+
+    .seccion h3 {
+      font-size: 12pt;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .seccion p {
+      font-size: 10pt;
+      margin: 0 0 5px;
+    }
+
+    .contenedor{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 9pt;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="marca">
+      <span>DIARIO</span>
+      <h1>EL ACCIONISTA</h1>
+      <span>JURISPRUDENCIA - DOCTRINA - LEGISLACIÓN - IMPUESTOS - SOCIEDADES ANÓNIMAS</span>
+    </div>
+    <div class="anios">
+      <div class="grande">{{anios}}</div>
+      <div class="chico">AÑOS</div>
+    </div>
+  </header>
+
+  <div class="datos-dia">
+    Buenos Aires, {{fecha}} | AÑO {{anioRomanos}} - Nº {{numeroEdicion}}
+  </div>
+
+ <section class="columnas">
+  {{#each secciones}}
+    <div class="seccion">
+      <h3 class="titulo">{{subseccion_nombre}}</h3>
+      <div class="contenedor">
+      {{#each noticias}}
+        <p><strong>{{textoBreve}}</strong><br>{{limitarTexto textoLargo 500}}</p>
+      {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</section>
+
+  <footer>
+    Diario generado automáticamente - www.elaccionista.com.ar
+  </footer>
+
+</body>
+</html>
+ --}}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: 'serif', sans-serif;
+      font-size: 11pt;
+      margin: 0;
+      padding: 0;
+    }
+
+    .contenido {
+      column-count: 3;
+      column-gap: 20px;
+      width: 100%;
+    }
+
+    h1, h2, h3 {
+      break-inside: avoid;
+    }
+
+    p {
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenido">
+    {{{contenido}}}
+  </div>
+</body>
+</html>
