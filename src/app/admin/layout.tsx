@@ -6,9 +6,9 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grow flex gap-2   ">
+    <div className="grow flex gap-2 ">
       <NavBarAdmin />
-      <div className="p-2  grow">
+      <div className="  grow">
         {children}
       </div>
     </div>

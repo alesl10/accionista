@@ -13,10 +13,10 @@ const NavBarAdmin = () => {
     }`;
 
   return (
-    <aside className="w-64 bg-gray-200 text-primary p-4 shadow-lg">
+    <aside className="w-64 bg-gray-200 text-primary p-4 shadow-lg flex flex-col">
     <h2 className="text-xl font-bold mb-6 border-b pb-2">Panel de Admin</h2>
 
-    <nav className="flex flex-col gap-4">
+    <nav className="flex flex-col gap-4 ">
       <Link href="/admin/secciones" className={linkClass('/admin/secciones')}>
         <MdDashboard />
         Gestor de Secciones
@@ -34,6 +34,12 @@ const NavBarAdmin = () => {
         Gestor de Usuarios
       </Link>
     </nav>
+    
+    <Link href="/" className="text-lg w-full font-bold  ">
+    <div className='w-full border-t pt-2'>
+      Web principal
+    </div>
+    </Link>
   </aside>
   );
 }
