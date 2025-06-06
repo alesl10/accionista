@@ -1,4 +1,11 @@
 import Link from "next/link";
+import { Rokkitt } from 'next/font/google'
+
+const rookit = Rokkitt({
+  subsets: ['latin'],
+  weight: ['400', '700','900'],
+  display: 'swap',
+});
 
 // Función para convertir números a romanos
 function toRoman(num: number): string {
@@ -22,7 +29,7 @@ const Header = () => {
   const fundacion = new Date("1945-05-17");
 
   // Cálculo de años cumplidos
-  const cumpleEsteAnio = new Date(fechaActual.getFullYear(), 4, 17); 
+  const cumpleEsteAnio = new Date(fechaActual.getFullYear(), 4, 17);
   let años = fechaActual.getFullYear() - fundacion.getFullYear();
   if (fechaActual < cumpleEsteAnio) años--;
 
@@ -41,7 +48,7 @@ const Header = () => {
             <div className="flex flex-col -space-y-3 leading-none">
               <span className="font-semibold text-md">DIARIO</span>
               <div className='flex flex-col -space-y-5 leading-none items-center'>
-                <h1 className="text-8xl font-black tracking-tighter font-rokkit">
+                <h1 className={`text-8xl font-black tracking-tighter ${rookit.className}`}>
                   EL ACCIONISTA
                 </h1>
                 <span className="text-md text-center w-full text-gray-200 font-semibold">

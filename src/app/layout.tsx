@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Rokkitt } from "next/font/google";
+import { Rokkitt, Roboto } from "next/font/google";
 import "./globals.css";
 import Header from '../components/Header'
 import Footer from '../components/Footer.jsx'
 
-const rookit = Rokkitt({
-  variable: '--font-rokkit',
-  subsets: ['latin']
-})
 
+
+const roboto = Roboto({
+  subsets:['latin'],
+  display: 'swap',
+  weight:['100','200','300','400','500','600','700','800','900']
+})
 
 export const metadata: Metadata = {
   title: "Inicio | El Accionista",
@@ -40,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${rookit.variable} antialiased flex flex-col min-h-screen `}
+        className={`${roboto.className} antialiased flex flex-col min-h-screen `}
       >
         <Header />
         {children}

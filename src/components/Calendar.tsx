@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   FormControl,
@@ -12,40 +12,33 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import dayjs, { Dayjs } from 'dayjs';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import 'dayjs/locale/es';
 
 export default function BasicDateCalendar() {
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
-  const [currentView, setCurrentView] = useState<'year' | 'month' | 'day'>('day');
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const router = useRouter();
 
-  useEffect(() => {
-    dayjs.locale('es');
-    const fechaParam = searchParams.get('fecha');
-    if (fechaParam) {
-      setSelectedDate(dayjs(fechaParam));
-    } else {
-      setSelectedDate(dayjs());
-    }
-  }, []);
+  dayjs.locale('es');
+  const fechaParam = searchParams.get('fecha');
+  const fechaInicial = fechaParam ? dayjs(fechaParam) : dayjs();
+
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(fechaInicial);
+  const [currentView, setCurrentView] = useState<'year' | 'month' | 'day'>('day');
 
   const handleFechaChange = (newValue: Dayjs | null) => {
     if (!newValue || !newValue.isValid()) return;
-  
-    // Solo redireccionamos si el usuario seleccionó un día
+
     if (currentView === 'day') {
       const nuevaFecha = newValue.format('YYYY-MM-DD');
       const fechaActual = selectedDate?.format('YYYY-MM-DD');
-  
+
       if (nuevaFecha !== fechaActual) {
-        setSelectedDate(newValue);
         router.push(`/?fecha=${nuevaFecha}`);
+        setSelectedDate(newValue); // Actualizamos para que el texto también se actualice
       }
     } else {
-      // Actualiza la fecha seleccionada solo si no estamos en la vista de 'day'
       setSelectedDate(newValue);
     }
   };
@@ -59,56 +52,54 @@ export default function BasicDateCalendar() {
         </h3>
         <span className="font-semibold text-md">Ediciones Anteriores</span>
 
-        {selectedDate && (
-          <DateCalendar
-            slotProps={{
-              day: {
-                sx: {
-                  width: 30,
-                  height: 30,
-                  fontSize: '0.75rem',
-                },
+        <DateCalendar
+          slotProps={{
+            day: {
+              sx: {
+                width: 30,
+                height: 30,
+                fontSize: '0.75rem',
               },
-            }}
-            sx={{
+            },
+          }}
+          sx={{
+            width: '100%',
+            maxWidth: 500,
+            padding: '4px',
+            maxHeight: '18rem',
+            '& .MuiYearCalendar-root': {
               width: '100%',
-              maxWidth: 500,
-              padding: '4px',
-              maxHeight: '18rem',
-              '& .MuiYearCalendar-root': {
-                width: '100%',
-                maxHeight: '14rem',
-                overflowY: 'auto',
-                columnGap: '8px',
-                rowGap: '4px',
-              },
-              '& .MuiYearCalendar-button': {
-                fontSize: '0.75rem',
-                width: 80,
-                height: 36,
-                padding: '4px 8px',
-              },
-              '& .MuiMonthCalendar-root': {
-                width: '100%',
-                maxHeight: '14rem',
-                overflowY: 'auto',
-                columnGap: '12px',
-                rowGap: '8px',
-              },
-              '& .MuiPickersMonth-monthButton': {
-                fontSize: '0.75rem',
-                width: 80,
-                height: 36,
-                padding: '4px 8px',
-              },
-            }}
-            views={['year', 'month', 'day']}
-            maxDate={dayjs()}
-            value={selectedDate}
-            onChange={handleFechaChange}
-            onViewChange={(view) => setCurrentView(view)}
-          />
-        )}
+              maxHeight: '14rem',
+              overflowY: 'auto',
+              columnGap: '8px',
+              rowGap: '4px',
+            },
+            '& .MuiYearCalendar-button': {
+              fontSize: '0.75rem',
+              width: 80,
+              height: 36,
+              padding: '4px 8px',
+            },
+            '& .MuiMonthCalendar-root': {
+              width: '100%',
+              maxHeight: '14rem',
+              overflowY: 'auto',
+              columnGap: '12px',
+              rowGap: '8px',
+            },
+            '& .MuiPickersMonth-monthButton': {
+              fontSize: '0.75rem',
+              width: 80,
+              height: 36,
+              padding: '4px 8px',
+            },
+          }}
+          views={['year', 'month', 'day']}
+          maxDate={dayjs()}
+          value={selectedDate}
+          onChange={handleFechaChange}
+          onViewChange={(view) => setCurrentView(view)}
+        />
 
         <FormControl className="bg-white" variant="outlined" size="small" sx={{ mt: 2 }}>
           <InputLabel>Buscar avisos</InputLabel>
